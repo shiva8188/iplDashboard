@@ -1,5 +1,8 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {PieChart, Pie, Cell, Tooltip, Legend} from 'recharts'
 import Loader from 'react-loader-spinner'
+
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
 
@@ -27,7 +30,6 @@ class TeamMatches extends Component {
     const data = await response.json()
 
     const bannerUrl = data.team_banner_url
-    console.log(data)
     const latestFiltered = {
       venue: data.latest_match_details.venue,
       competingTeam: data.latest_match_details.competing_team,
@@ -60,9 +62,27 @@ class TeamMatches extends Component {
 
   getTeamMatchesResult = () => {
     const {teamBanner, latestMatch, matchCard, newId} = this.state
+    const stats = {
+      wins: matchCard.filter(match => match.status === 'Won').length,
+      losses: matchCard.filter(match => match.status === 'Lost').length,
+      draws: matchCard.filter(match => match.status === 'Draw').length,
+    }
+
+    const data = [
+      {name: 'Wins', value: stats.wins},
+      {name: 'Losses', value: stats.losses},
+      {name: 'Draws', value: stats.draws},
+    ]
+
+    const colors = ['#0088FE', '#FF8042', '#00C49F']
 
     return (
       <div className={`teamMatches-container ${newId}`}>
+        <Link to="/" className="link">
+          <button type="button" className={`back-button ${newId}`}>
+            Back
+          </button>
+        </Link>
         <div className="result-container">
           <img src={teamBanner} alt="team banner" className="banner" />
           <div className="latestMatch-container">
@@ -74,13 +94,36 @@ class TeamMatches extends Component {
               ))}
             </ul>
           </div>
+          <div>
+            <h1 className="statistics-heading">Statistics</h1>
+            <PieChart width={300} height={300}>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                label
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {data.map((a, index) => (
+                  <Cell
+                    key={`cell-${index + a.length}`}
+                    fill={colors[index % colors.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </div>
         </div>
       </div>
     )
   }
 
   getSpinner = () => (
-    <div data-testid="loader">
+    <div data-testid="loader" className="loader-container">
       <Loader type="Oval" className="#ffffff" height={50} width={50} />
     </div>
   )

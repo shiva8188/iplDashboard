@@ -3,7 +3,23 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 10px;
+  padding: 20px;
+}
+
+.link {
+  align-self: flex-start;
+}
+
+.back-button {
+  color: white;
+  border: 1px solid white;
+}
+
+.loader-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .KXP {
@@ -44,6 +60,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
+  width: 80%;
 }
 
 .banner {
@@ -71,4 +88,19 @@
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+}
+
+.statistics-container {
+  align-self: flex-start;
+}
+
+.statistics-heading {
+  color: white;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.statistics {
+  width: 100%;
+  background-color: black;
 }

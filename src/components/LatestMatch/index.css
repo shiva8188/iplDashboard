@@ -1,7 +1,6 @@
 .latestTeamDetails {
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 8px;
   background-color: #0f172a;
 }
