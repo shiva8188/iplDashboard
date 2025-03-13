@@ -1,0 +1,42 @@
+.matchList {
+  list-style-type: none;
+  background-color: #0f172a;
+  width: 100px;
+  height: 140px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 7px;
+  border-radius: 6px;
+}
+
+.matchImg {
+  width: 40px;
+  height: 40px;
+}
+
+.match-heading {
+  font-size: 7px;
+  color: #ffffff;
+}
+
+.match-result {
+  color: #ffffff;
+  font-size: 8px;
+}
+
+.Lost {
+  color: #e31a1a;
+  font-size: 15px;
+  margin: 0px;
+  
+}
+
+.Won {
+  color: #18ed66;
+  font-size: 15px;
+  margin: 0px;
+}
